@@ -19,12 +19,12 @@ subjects:
 # You can specify more than one "subject"
 - kind: ServiceAccount
   name: expense-mysql-secret # "name" is case sensitive
-  apiGroup: rbac.authorization.k8s.io
+  namespace: expense
 roleRef:
   # "roleRef" specifies the binding to a Role / ClusterRole
   kind: Role #this must be Role or ClusterRole
   name: sa-secret-reader # this must match the name of the Role or ClusterRole you wish to bind to
-  namespace: expense
+  apiGroup: rbac.authorization.k8s.io
 ---
 kind: Pod
 apiVersion: v1
