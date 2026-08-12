@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app.kubernetes.io/name: MyApp
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - NoSchedule
+
+  tolerations:
+  - key: "app"
+    operator: "Exists"
+    effect: "NoSchedule"
+  containers:
+  - name: nginx
+    image: nginx
